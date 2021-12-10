@@ -1,0 +1,15 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "events_url" TEXT,
+ADD COLUMN     "followers_url" TEXT,
+ADD COLUMN     "following_url" TEXT,
+ADD COLUMN     "gists_url" TEXT,
+ADD COLUMN     "gravatar_id" TEXT,
+ADD COLUMN     "node_id" TEXT,
+ADD COLUMN     "organizations_url" TEXT,
+ADD COLUMN     "received_events_url" TEXT,
+ADD COLUMN     "repos_url" TEXT,
+ADD COLUMN     "site_admin" BOOLEAN,
+ADD COLUMN     "starred_url" TEXT,
+ADD COLUMN     "subscriptions_url" TEXT,
+ADD COLUMN     "type" TEXT,
+ADD COLUMN     "url" TEXT;
