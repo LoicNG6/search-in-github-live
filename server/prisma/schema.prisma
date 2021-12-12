@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id                  Int    @id
+  id                  Int       @id @unique
   login               String    @unique
   name                String?
   avatar_url          String?
@@ -27,7 +27,7 @@ model User {
   public_gists        Int?
   followers           Int?
   following           Int?
-  created_at          DateTime
+  created_at          DateTime?
   updated_at          DateTime?
   node_id             String?
   gravatar_id         String?

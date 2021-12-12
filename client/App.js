@@ -6,13 +6,14 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 class App extends React.Component {
   fetchUser = async (username) => {
     //  const response = await fetch(`http://40f1cdb711d6.ngrok.io/api/users/${username}`);
+    console.log("bonjour");
 
-    const response = await fetch(`http://c713-2a01-cb00-d04-2400-588f-5af0-ce1d-f768.ngrok.io/api/users/${username}`);
-
+    const response = await fetch(`http://be97-2a01-cb00-d04-2400-48b6-a8fa-8453-c72a.ngrok.io/api/users/${username}`);
+    
+    console.log("response => ", response);
     
     const data = await response.json();
 
-    console.log("data => ", data);
 
     return data;
   }
@@ -24,8 +25,7 @@ class App extends React.Component {
 
 
   loadDatas() {
-    this.fetchUser("Loïc").then(data => this.setState({ datas: data.results }));
-    console.log("this.state :: ",  this.state)
+    this.fetchUser("LoicNG6").then(data => console.table("data"));
   }
 
   render() {

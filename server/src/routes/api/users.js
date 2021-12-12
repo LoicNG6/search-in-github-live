@@ -6,16 +6,16 @@ const api = Router();
 
 class User {
   prisma = new PrismaClient()
-  
+
 
   //Don't need constructor
   constructor() { }
-  
+
   //Create/Insert a user in db
-  async createUser(data) {
-    await this.prisma.user.create({
-      data
-    });
+  createUser(data) {
+    this.prisma.user.create({
+      data : data
+    }).then((res) => { });
   }
 
   //fetch in GitHub api
@@ -23,10 +23,8 @@ class User {
     const d = await fetch(`https://api.github.com/users/${username}`);
     const data = await d.json();
     if (data.message) {
-      console.log("user inexistant");
       return "user inexistant";
     } else {
-      // console.log(data);
       this.createUser(data);
       return data;
     }
@@ -39,19 +37,11 @@ class User {
         login: username,
       }
     }).then((result) => {
-      // if (result) return result;
       if (result) {
-        console.log("result = ", result);
-        return {
-          nom: "loic",
-          prenom: "NGUESSIE",
-        };
+        return result;
       } else {
         const gA = this.fetchInGitHubApi(username).then((res) => {
-          return {
-            nom: "Chris-Will",
-            prenom: "NGOULE NJENA"
-          }
+          return res;
         });
       }
     })
@@ -62,10 +52,11 @@ const u1 = new User();
 
 api.get("/:username", (request, response) => {
   const { username } = request.params;
-  console.log("response = ", response.req.params);
   u1.fetchMyApi(username);
-  response.json(u1.fetchMyApi(username));
-
+  
+  response.json({
+    data: u1.fetchMyApi(username),
+  });
   // const { username } = request.params;
   // //ask to Db
   // const requestUserId = prisma.user.findUnique({
